@@ -31,8 +31,15 @@ class Board extends React.Component {
     )
   }
 
+  /*Why use immutability:
+  - Simplify complex features
+  - Detecting changes (new obj vs comparison)
+  - Determine when to re-render component
+  */
   handleClick(i) {
-    const squares = this.state.squares.slice() // get copy of squares:[]
+    // get copy of squares:[]
+    // const squares = this.state.squares.slice()
+    const squares = { ...this.state.squares }
     squares[i] = "X"
     this.setState({ squares })
   }
