@@ -2,20 +2,43 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+// receive value from the Board & passes value back => Square = Controlled component
 class Square extends React.Component {
   render() {
-    return <button className="square">{/* TODO */}</button>;
+    return (
+      <button className="square"
+        onClick={() => this.props.onClick()}>
+        {this.props.value}
+      </button >
+    );
   }
 }
 
 class Board extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      squares: Array(9).fill(null)
+    }
+  }
+
   renderSquare(i) {
-    return <Square />;
+    return (
+      <Square
+        value={this.state.squares[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    )
+  }
+
+  handleClick(i) {
+    const squares = this.state.squares.slice() // get copy of squares:[]
+    squares[i] = "X"
+    this.setState({ squares })
   }
 
   render() {
     const status = "Next player: X";
-
     return (
       <div>
         <div className="status">{status}</div>
