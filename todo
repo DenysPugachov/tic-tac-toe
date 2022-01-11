@@ -1,11 +1,10 @@
 Improvements   tic-tac-toe:
 
-- Feat#3 Rewrite Board to use two loops to make the squares instead of hardcoding them.
-- Feat#4 Add a toggle button that lets you sort the moves in either ascending or descending order.
-- Feat#5 When someone wins, highlight the three squares that caused the win.
-
+- feat#3: Rewrite Board to use two loops to make the squares instead of hardcoding them. @done
+- feat#4: Add a toggle button that lets you sort the moves in either ascending or descending order.
+- feat#5: When someone wins, highlight the three squares that caused the win.
 
 Archive:
 - Display the location for each move in the format (col, row) in the move history list. @done
 - Bold the currently selected item in the move list. @done
-- When no one wins, display a message about the result being a draw. @done
+- When no one wins, display a message about the result being a draw. @done 
