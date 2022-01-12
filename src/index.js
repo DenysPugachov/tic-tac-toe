@@ -50,7 +50,6 @@ class Game extends React.Component {
       stepNumber: 0,
       xIsNext: true,
       isMovesListDescending: false,
-      // isWinner: false,
     }
   }
 
@@ -69,7 +68,7 @@ class Game extends React.Component {
     ];
     const history = this.state.history.slice(0, this.state.stepNumber + 1)//if “go back in time” => delete “future” history that would now become incorrect
     const current = history[history.length - 1]
-    const squares = { ...current.squares }
+    const squares = [...current.squares] // bug {...arr} => {} 
 
     if (calculateWinner(squares) || squares[i]) { return }
 
@@ -98,7 +97,10 @@ class Game extends React.Component {
 
   render() {
     const history = this.state.history
-    const current = history[this.state.stepNumber] //rendering currently selected move => stepNumber
+    const current = history[this.state.stepNumber]
+
+    console.log("isIncludes", current.squares)
+
     const winnerObj = calculateWinner(current.squares)
 
     const moves = history.map((step, move) => {
@@ -119,6 +121,7 @@ class Game extends React.Component {
     let status
     if (winnerObj) {
       status = `Winner: ${winnerObj.winner}`
+      // } else if (!current.squares.includes("x")) {// bug: => drawn from start on game
     } else if (this.state.stepNumber === 9) {// 9 => all squares is filled
       status = "The game is drawn."
     } else {
