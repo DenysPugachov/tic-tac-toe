@@ -12,34 +12,32 @@ function Square(props) {
   )
 }
 
-class Board extends React.Component {
-  renderSquare(i) {
+function Board(props) {
+  const renderSquare = (i) => {
     return (
       <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-        isWinSquare={this.props.winSquaresLine.includes(i)}
+        value={props.squares[i]}
+        onClick={() => props.onClick(i)}
+        isWinSquare={props.winSquaresLine.includes(i)}
       />
     )
   }
-  renderBoard(colsNum, rowsNum) {
+  const renderBoard = (colsNum, rowsNum) => {
     let boardSquaresArr = []
     for (let r = 0; r < rowsNum; r++) {
       let boardRowsArr = []
       for (let c = 0; c < colsNum; c++) {
-        boardRowsArr.push(<span key={(r * colsNum) + c}>{this.renderSquare((r * colsNum) + c)}</span>);
+        boardRowsArr.push(<span key={(r * colsNum) + c}>{renderSquare((r * colsNum) + c)}</span>);
       }
       boardSquaresArr.push(<div className="board-row" key={r}>{boardRowsArr}</div>);
     }
     return boardSquaresArr
   }
-  render() {
-    return (
-      <div>
-        {this.renderBoard(3, 3)}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {renderBoard(3, 3)}
+    </div>
+  );
 }
 
 class Game extends React.Component {
@@ -77,7 +75,6 @@ class Game extends React.Component {
 
     squares[i] = this.state.xIsNext ? "X" : "O"
 
-    // add new history squares:[] onto history.
     this.setState({
       history: history.concat([{
         squares,
