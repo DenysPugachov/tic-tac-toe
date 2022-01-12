@@ -98,9 +98,6 @@ class Game extends React.Component {
   render() {
     const history = this.state.history
     const current = history[this.state.stepNumber]
-
-    console.log("isIncludes", current.squares)
-
     const winnerObj = calculateWinner(current.squares)
 
     const moves = history.map((step, move) => {
